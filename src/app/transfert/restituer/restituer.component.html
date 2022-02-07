@@ -1,0 +1,72 @@
+<app-header></app-header>
+<form [formGroup]="rest">
+      <div class="bottomBorder">
+        <div style="margin-left:30%">
+  
+          <mat-form-field>
+            <input matInput formControlName="refTrans" placeholder="Référence du transfert">
+          </mat-form-field>
+          <button mat-button class="blueButton" (click)="search()">Rechercher</button>
+  
+  
+        </div>
+      </div>
+  
+      <div *ngIf="edited" style="border:solid 1px;height:500px;width:700px;margin:auto">
+        <mat-card-title style="padding-top: 80px;">Detail du transfert n° {{Transfert.codeTransfert}}</mat-card-title>
+  
+        <div class="containerContent">
+          <mat-grid-list cols="2" rowHeight="12:1">
+            <mat-grid-tile>
+  
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div id="contt">
+        <div class="aa">
+            <span class="b">Agent   :</span>
+          <span>{{Transfert.idAgent}}</span>
+        </div>
+        <div class="aa">
+            <span class="b">Montant   :</span>
+          <span>{{Transfert.montant}} MAD</span>
+        </div>
+        <div class="aa">
+            <span class="b">Client    :</span>
+          <span>{{Client}}</span>
+        </div>
+        <div class="aa">
+            <span class="b">Date Transfert    :</span>
+          <span>{{Transfert.dateTransfert | date:'medium'}}</span>
+        </div>
+        <div class="aa">
+            <span class="b">Bénéficiaire  :</span>
+          <span>{{Transfert.nomBenef}} {{Transfert.prenomBenef}}</span>
+        </div>
+        </div>
+        <mat-label class="w-100"><strong>Motif : </strong> 
+            <select style="margin-left:20px; width:100px"   formControlName="motiff"
+              placeholder="Motif de restitution">
+              <option value="Demande">Demande</option>
+              <option value="Soupeçon">Soupeçon</option>
+              <option value="Blacklisted">Blacklisted</option>
+            </select>
+          </mat-label>
+      <div fxFlex fxLayoutAlign="start center">
+        <div>
+          <div class="form-group" style="margin-top:30px;">
+            <div style="display: flex; justify-content:space-around;">
+  
+  
+  
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <button style="border:solid 1px;" mat-button class="blueButton" (click)="restituer()">
+        Restituer
+      </button>
+  
+    </div>
+    </div>
+  </form>

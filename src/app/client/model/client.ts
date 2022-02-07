@@ -1,15 +1,21 @@
 export class Client {
-  adresse: string;
+  adress: string;
   cin: string;
   email: string;
-  id: number;
+  clientId:number
   nom: string;
   password: string;
   prenom: string;
-  role: string;
-  numGMS: string;
+  numGSM: string;
   titre: string;
   typePI: string;
-  telephone: string;
   username: string;
+  paysemission:string
+  validiteId:Date
+  dateNaissance:Date
+  profession:string
+  nationalite:string
+  paysAdress:string
+  ville:string
+
 }

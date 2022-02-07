@@ -48,24 +48,24 @@ export class OperationFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountService.findAccount(this.codeId2).subscribe(
-      (data) => {
-        console.log(data);
-        this.account = data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-    this.accountService.findCodeDevise(this.codeId2).subscribe(
-      (data) => {
-        console.log(data);
-        this.devise1 = data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    // this.accountService.findAccount(this.codeId2).subscribe(
+    //   (data) => {
+    //     console.log(data);
+    //     this.account = data;
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
+    // this.accountService.findCodeDevise(this.codeId2).subscribe(
+    //   (data) => {
+    //     console.log(data);
+    //     this.devise1 = data;
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
   }
 
   reset() {

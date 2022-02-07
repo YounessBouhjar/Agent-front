@@ -7,11 +7,12 @@
           <button
             mat-button
             class="blueButton"
-            [routerLink]="['/client', codeId, 'accountForm']"
+            (click)="add()"
+
           >
             Ajouter
           </button>
-          <button mat-button class="blueButton" routerLink="/clients">
+          <button mat-button class="blueButton" routerLink="/client">
             Revenir au clients
           </button>
         </div>
@@ -36,26 +37,29 @@
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="proprietaire">
-      <th mat-header-cell *matHeaderCellDef>Proprietaire</th>
-      <td mat-cell *matCellDef="let element">{{ element.proprietaire.nom }} {{ element.proprietaire.prenom }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="numero">
-      <th mat-header-cell *matHeaderCellDef>Numero du compte</th>
-      <td mat-cell *matCellDef="let element">{{ element.numero }}</td>
+    <ng-container matColumnDef="numCompte">
+      <th mat-header-cell *matHeaderCellDef>numCompte</th>
+      <td mat-cell *matCellDef="let element">{{ element.numComptem }} </td>
     </ng-container>
 
     <ng-container matColumnDef="solde">
-      <th mat-header-cell *matHeaderCellDef>Solde</th>
+      <th mat-header-cell *matHeaderCellDef>solde</th>
+      <td mat-cell *matCellDef="let element">{{ element.solde }}</td>
+    </ng-container>
+    <ng-container matColumnDef="createAt">
+      <th mat-header-cell *matHeaderCellDef>createAt</th>
+      <td mat-cell *matCellDef="let element">{{ element.createAt }}</td>
+    </ng-container>
+    <ng-container matColumnDef="typeCompte">
+      <th mat-header-cell *matHeaderCellDef>typeCompte</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.solde | number: "1.2-2" }} {{ element.devise.code }}
+        {{ element.typeCompte }}
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef>Type</th>
-      <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+    <ng-container matColumnDef="idClient">
+      <th mat-header-cell *matHeaderCellDef>idClient</th>
+      <td mat-cell *matCellDef="let element">{{ element.idClient }}</td>
     </ng-container>
 
     <ng-container matColumnDef="actions">

@@ -1,40 +1,28 @@
-<mat-card>
+<mat-card class="hh">
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="checkLogin()">
-      <span>Espace agent</span>
+              
+      <img src="../../../assets/staff.jpeg" alt="">
+      <h1>Espace Agent</h1>Veuillez enter vos informations.
+        <div>
+        <mat-error class="incorrect" *ngIf="loginInvalid"> Email et/ou mot de passe incorrect.</mat-error>
 
-      <mat-error *ngIf="loginInvalid">
-        Username ou mot de passe non reconnu.
-      </mat-error>
+        <mat-form-field >
+          <mat-label color="green">Email</mat-label>
+          <input matInput color="green" placeholder="Email" formControlName="email"  required/>
+          <mat-icon matSuffix>supervised_user_circle</mat-icon>
+          <mat-error>Veuillez entrer votre email.</mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="full-width-input">
-        <input
-          matInput
-          placeholder="Email"
-          formControlName="email"
-          required
-        />
-
-        <mat-error>
-          Entrez un username s'il vous plait.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="full-width-input">
-        <input
-          matInput
-          type="password"
-          placeholder="Mot de passe"
-          formControlName="password"
-          required
-        />
-
-        <mat-error>
-          Entrez un mot de passe s'il vous plait.
-        </mat-error>
-      </mat-form-field>
-
-      <button mat-raised-button  class="loginButton">Se connecter</button>
+        <mat-form-field >
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Password" formControlName="password" required/>
+          <mat-icon matSuffix >visibility_off</mat-icon>         
+          <mat-error>Veuillez enter votre mot de passe.</mat-error>
+        </mat-form-field>
+        
+      </div>
+      <button class="login">Se conecter</button>
     </form>
   </mat-card-content>
 </mat-card>

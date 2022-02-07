@@ -13,22 +13,22 @@ table {
 }
 .blueButton {
   border-radius: 10px;
-  background:#ffa600;
+  background:#FECF47;
   border-radius: 10x;
-  color: rgb(139, 85, 23);
+  color: white;
   margin-right: 30px;
   font-size: 15px;
   padding: 5px 10px;
 }
 .blueButton:hover{
-  background:#ffc400;
-  color:rgb(95, 55, 9);
+  background:#FECF47;
+  color:white;
   font-size: 20px;
   padding: auto;
   margin-right: 20px;
 }
 .importer {
-  color: #ffa600;
+  color: #FECF47;
 }
 .borderBottom {
   border-bottom: 1px solid #dee2e6;

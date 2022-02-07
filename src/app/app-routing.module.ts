@@ -4,12 +4,11 @@ import { ClientListComponent } from './client/components/client-list/client-list
 import { LoginComponent } from './authentification/components/login/login.component';
 import { ClientFormComponent } from './client/components/client-form/client-form.component';
 import { AccountListComponent } from './account/components/account-list/account-list.component';
-import { AccountFormComponent } from './account/components/account-form/account-form.component';
-import { OperateurListComponent } from './operateur/components/operateur-list/operateur-list.component';
-import { OperateurFormComponent } from './operateur/components/operateur-form/operateur-form.component';
-import { OperationListComponent } from './operation/components/operation-list/operation-list.component';
-import { OperationFormComponent } from './operation/components/operation-form/operation-form.component';
 import { AuthGuardService } from './authentification/services/auth-guard.service';
+import { ClientUpdateComponent } from './client/components/client-update/client-update.component';
+import { TransfertListtComponent } from './transfert/transfert-listt/transfert-listt.component';
+import { AddTransfertComponent } from './transfert/add-transfert/add-transfert.component';
+import { RestituerComponent } from './transfert/restituer/restituer.component';
 
 const routes: Routes = [
   {
@@ -21,6 +20,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+  
   {
     path: 'client',
     component: ClientListComponent,
@@ -32,35 +32,51 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   {
+    path: 'updateClient/:clientId',
+    component: ClientUpdateComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
     path: 'client/:id/accounts',
     component: AccountListComponent,
     canActivate: [AuthGuardService],
   },
   {
-    path: 'client/:id/accountForm',
-    component: AccountFormComponent,
+    path: 'transferts',
+    component: TransfertListtComponent,
     canActivate: [AuthGuardService],
   },
   {
-    path: 'operators',
-    component: OperateurListComponent,
+    path: 'Addtransfert',
+    component: AddTransfertComponent,
     canActivate: [AuthGuardService],
   },
   {
-    path: 'operatorForm',
-    component: OperateurFormComponent,
+    path: 'Restituertransfert',
+    component: RestituerComponent,
     canActivate: [AuthGuardService],
   },
-  {
-    path: 'client/:id/account/:id2/operations',
-    component: OperationListComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'client/:id/account/:id2/operationForm',
-    component: OperationFormComponent,
-    canActivate: [AuthGuardService],
-  },
+
+  // {
+  //   path: 'operators',
+  //   component: OperateurListComponent,
+  //   canActivate: [AuthGuardService],
+  // },
+  // {
+  //   path: 'operatorForm',
+  //   component: OperateurFormComponent,
+  //   canActivate: [AuthGuardService],
+  // },
+  // {
+  //   path: 'client/:id/account/:id2/operations',
+  //   component: OperationListComponent,
+  //   canActivate: [AuthGuardService],
+  // },
+  // {
+  //   path: 'client/:id/account/:id2/operationForm',
+  //   component: OperationFormComponent,
+  //   canActivate: [AuthGuardService],
+  // },
 ];
 
 @NgModule({

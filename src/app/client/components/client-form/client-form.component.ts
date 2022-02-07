@@ -16,9 +16,8 @@ export class ClientFormComponent implements OnInit {
     nom: new FormControl('', Validators.required),
     prenom: new FormControl('', Validators.required),
     cin: new FormControl('', Validators.required),
-    adresse: new FormControl('', Validators.required),
-    telephone: new FormControl('', Validators.required),
-    username: new FormControl('', Validators.required),
+    adress: new FormControl('', Validators.required),
+    numGSM: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', Validators.required),
   });
@@ -35,15 +34,15 @@ export class ClientFormComponent implements OnInit {
     return this.clientForm.get('cin');
   }
 
-  get adresse() {
-    return this.clientForm.get('adresse');
+  get adress() {
+    return this.clientForm.get('adress');
   }
-  get telephone() {
-    return this.clientForm.get('telephone');
+  get numGSM() {
+    return this.clientForm.get('numGSM');
   }
 
-  get username() {
-    return this.clientForm.get('username');
+  get password() {
+    return this.clientForm.get('password');
   }
 
   get email() {
@@ -67,10 +66,21 @@ export class ClientFormComponent implements OnInit {
   }
 
   gotoClientList() {
-    this.router.navigate(['/clients']);
+    this.router.navigate(['/client']);
   }
 
   reset() {
     this.clientForm.reset();
   }
+
+getErrorMessage() {
+  if (this.email.hasError('required')) {
+    return 'You must enter a value';
+  }
+  return this.email.hasError('email') ? 'Not a valid email' : '';
+}
+getErrorMessages(){
+  if (this.nom.hasError('required')||this.prenom.hasError('required')||this.password.hasError('required')) 
+  return 'You must enter a value';
+}
 }

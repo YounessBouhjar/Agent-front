@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountFormComponent } from './account-form.component';
+import { TransfertListtComponent } from './transfert-listt.component';
 
-describe('AccountFormComponent', () => {
-  let component: AccountFormComponent;
-  let fixture: ComponentFixture<AccountFormComponent>;
+describe('TransfertListtComponent', () => {
+  let component: TransfertListtComponent;
+  let fixture: ComponentFixture<TransfertListtComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountFormComponent ]
+      declarations: [ TransfertListtComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccountFormComponent);
+    fixture = TestBed.createComponent(TransfertListtComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

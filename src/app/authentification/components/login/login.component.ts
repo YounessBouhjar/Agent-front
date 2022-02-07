@@ -20,11 +20,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      username: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
   }
-  get username() {
+  get email() {
     return this.form.get('email');
   }
   get password() {
@@ -32,14 +32,15 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
-    console.log(this.username.value);
+    console.log(this.email.value);
     this.loginservice
-      .authentificate(this.username.value, this.password.value)
-      .subscribe(
+      .authentificate(this.email.value, this.password.value)
+      .subscribe( 
         (data) => {
           this.loginInvalid = false;
-          this.router.navigate(['client']);
+          this.router.navigate(['/client']);
           sessionStorage.setItem('password', btoa(this.password.value));
+          sessionStorage.setItem('id', data.id.toString());
           console.log('data login : ' + JSON.stringify(data));
 
         },

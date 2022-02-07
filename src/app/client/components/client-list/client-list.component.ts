@@ -5,6 +5,7 @@ import { Client } from '../../model/client';
 import { ClientService } from '../../service/client.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/patagee/components/confirmation-dialog/confirmation-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-list',
@@ -12,23 +13,23 @@ import { ConfirmationDialogComponent } from 'src/app/patagee/components/confirma
   styleUrls: ['./client-list.component.css'],
 })
 export class ClientListComponent implements OnInit {
-  constructor(private clientService: ClientService, public dialog: MatDialog) {
-    this.agencyId = sessionStorage.getItem('agency');
-    console.log(this.agencyId);
+  constructor(private clientService: ClientService, public dialog: MatDialog,    private router: ActivatedRoute,private route:Router
+
+    ) {
+
   }
   CLIENTS: Client[];
-  agencyId: string;
+  id: string;
 
   dataSource = new MatTableDataSource<Client>();
   displayedColumns: string[] = [
-    'id',
-    'username',
+    'clientId',
     'nom',
     'prenom',
     'email',
     'cin',
-    'adresse',
-    'telephone',
+    'adress',
+    'numGSM',
     'actions',
   ];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -42,17 +43,8 @@ export class ClientListComponent implements OnInit {
     this.clientService.delete(id).subscribe(
       (data) => {
         console.log(data);
+        this.ngOnInit();
 
-        this.clientService.findAll(this.agencyId).subscribe(
-          // tslint:disable-next-line:no-shadowed-variable
-          (data) => {
-            this.CLIENTS = data._embedded.clients;
-            this.dataSource = new MatTableDataSource<Client>(this.CLIENTS);
-          },
-          (error) => {
-            this.dataSource = new MatTableDataSource<Client>(null);
-          }
-        );
       },
       (error) => console.log(error)
     );
@@ -60,10 +52,10 @@ export class ClientListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('hello');
-    this.clientService.findAll(this.agencyId).subscribe(
+    this.clientService.allClients().subscribe(
       (data) => {
         console.log(data);
-        this.CLIENTS = data._embedded.clients;
+        this.CLIENTS = data;
         this.dataSource = new MatTableDataSource<Client>(this.CLIENTS);
         this.dataSource.paginator = this.paginator;
       },
@@ -88,5 +80,14 @@ export class ClientListComponent implements OnInit {
         this.deleteClient(result.data.codeSupp);
       }
     });
+  }
+  goToClient(client: any) {
+console.log(client.clientId)
+this.route.navigate(['/updateClient/' + client.clientId]);
+
+  }
+  goToAccounts(id:string){
+    this.route.navigate(['/client/'+id+'/accounts/' ]);
+
   }
 }

@@ -15,7 +15,8 @@ import { Account } from '../../model/account';
 export class AccountListComponent implements OnInit {
   ACCOUNTS: Account[];
   codeId: string;
-
+  account:Account
+  id:any
   dataSource = new MatTableDataSource<Account>();
 
   applyFilter(event: Event) {
@@ -24,10 +25,11 @@ export class AccountListComponent implements OnInit {
   }
   displayedColumns: string[] = [
     'id',
-    'numero',
-    'proprietaire',
-    'type',
+    'numCompte',
     'solde',
+    'typeCompte',
+    'createAt',
+    'idClient',
     'actions',
   ];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -35,45 +37,59 @@ export class AccountListComponent implements OnInit {
     private accountService: AccountService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
   ) {
-    console.log('AccountList');
-    this.codeId = this.route.snapshot.params['id'];
-    console.log(this.codeId);
+
   }
 
   deleteAccount(id: number) {
-    this.accountService.delete(id).subscribe(
-      (data) => {
-        console.log(data);
+    // this.accountService.delete(id).subscribe(
+    //   (data) => {
+    //     console.log(data);
 
-        this.accountService.findAll(this.codeId).subscribe(
-          (data) => {
-            this.ACCOUNTS = data;
-            this.dataSource = new MatTableDataSource<Account>(this.ACCOUNTS);
-          },
-          (error) => {
-            this.dataSource = new MatTableDataSource<Account>(null);
-          }
-        );
-      },
-      (error) => console.log(error)
-    );
+    //     this.accountService.findAll(this.codeId).subscribe(
+    //       (data) => {
+    //         this.ACCOUNTS = data;
+    //         this.dataSource = new MatTableDataSource<Account>(this.ACCOUNTS);
+    //       },
+    //       (error) => {
+    //         this.dataSource = new MatTableDataSource<Account>(null);
+    //       }
+    //     );
+    //   },
+    //   (error) => console.log(error)
+    // );
   }
 
   ngOnInit(): void {
-    this.accountService.findAll(this.codeId).subscribe(
+    this.account=new Account()
+    this.account.idClient = this.route.snapshot.params['id'];
+    this.accountService.findAccountByIdClient(this.account.idClient).subscribe(
       (data) => {
-        console.log(data);
         this.ACCOUNTS = data;
         this.dataSource = new MatTableDataSource<Account>(this.ACCOUNTS);
         this.dataSource.paginator = this.paginator;
+        console.log("data accounts : " +JSON.stringify(data));
+ 
+
       },
       (error) => {
-        console.log(error);
         this.dataSource = new MatTableDataSource<Account>(null);
+        console.log(error)
+
       }
-    );
+    );    // this.accountService.findAll(this.codeId).subscribe(
+    //   (data) => {
+    //     console.log(data);
+    //     this.ACCOUNTS = data;
+    //     this.dataSource = new MatTableDataSource<Account>(this.ACCOUNTS);
+    //     this.dataSource.paginator = this.paginator;
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //     this.dataSource = new MatTableDataSource<Account>(null);
+    //   }
+    // );
   }
 
   openDialog(code: string): void {
@@ -93,7 +109,28 @@ export class AccountListComponent implements OnInit {
   }
   goToOperations(code: string) {
     this.router.navigate([
-      '/client/' + this.codeId + '/account/' + code + '/operations',
+      'overview/client/' + this.codeId + '/account/' + code + '/operations',
     ]);
-  }s
+  }
+add(){
+  
+  console.log('hahahaha')
+  console.log(this.account.idClient)
+  this.accountService
+  .save(this.account)
+  .subscribe((result) => {
+    // this.gotoTransfertList()
+  console.log("test : " +JSON.stringify(result));
+ console.log("test")
+ this.router.navigate(['overview/client/'+this.account.idClient+'/accounts']);
+
+
+},
+(error) => {
+console.log(error)
+
+})
+
+  }
+
 }

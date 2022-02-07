@@ -67,7 +67,7 @@ export class OperateurFormComponent implements OnInit {
   }
 
   goToClientList() {
-    this.router.navigate(['/clients']);
+    this.router.navigate(['/client']);
   }
 
   reset() {
